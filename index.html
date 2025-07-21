@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Photo Gallery</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: #000;
+      color: #fff;
+      padding: 8px;
+      z-index: 100;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    header, main {
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    figure {
+      border: 2px solid #ccc;
+      padding: 10px;
+      transition: border-color 0.3s;
+    }
+
+    figure:focus, figure:hover {
+      border-color: #007BFF;
+      outline: none;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    figcaption {
+      text-align: center;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to Main Content</a>
+
+  <header>
+    <h1>My Interactive Photo Gallery</h1>
+  </header>
+
+  <main id="main">
+    <section class="gallery">
+      <figure>
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/e0/ce/85/sunset-beach.jpg?w=1200&h=-1&s=1" alt="Sunset over beach">
+        <figcaption>Sunset</figcaption>
+      </figure>
+      <figure>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Forest_path_and_trees.jpg/2560px-Forest_path_and_trees.jpg" alt="Forest pathway in autumn">
+        <figcaption>Forest Path</figcaption>
+      </figure>
+      <figure>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQslefcChOOibNnrBlqlr3pefeu8-apftfDAA&s" alt="Snowy mountain landscape">
+        <figcaption>Mountains</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1619233651146-7364c945c3ee?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDMzfHx8ZW58MHx8fHx8" alt="Ocean waves crashing on shore">
+        <figcaption>Ocean Waves</figcaption>
+      </figure>
+      <figure>
+        <img src="https://img.freepik.com/free-photo/high-angle-beautiful-buildings-nighttime_23-2149444909.jpg?semt=ais_hybrid&w=740" alt="City skyline at night">
+        <figcaption>City Skyline</figcaption>
+      </figure>
+      <figure>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlVLM7ZOtrDzpw0rpAgkRVpQ_vf3k2Q-Yreg&s" alt="Desert with sand dunes">
+        <figcaption>Desert Dunes</figcaption>
+      </figure>
+    </section>
+  </main>
+
+  <script>
+    function addTabIndexes() {
+      let figures = document.querySelectorAll("figure");
+      for (let i = 0; i < figures.length; i++) {
+        figures[i].setAttribute("tabindex", "0");
+        figures[i].addEventListener("mouseover", () => {
+          figures[i].style.borderColor = "green";
+        });
+        figures[i].addEventListener("mouseleave", () => {
+          figures[i].style.borderColor = "#ccc";
+        });
+        figures[i].addEventListener("focus", () => {
+          figures[i].style.borderColor = "blue";
+        });
+        figures[i].addEventListener("blur", () => {
+          figures[i].style.borderColor = "#ccc";
+        });
+      }
+      console.log("Tabindex set and event listeners added to figures.");
+    }
+
+    window.onload = addTabIndexes;
+  </script>
+</body>
+</html>
